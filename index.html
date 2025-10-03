@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Carpintaria Criativa - Portfólio</title>
+  <style>
+    /* Reset simples */
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{
+      font-family: "Inter", Arial, Helvetica, sans-serif;
+      color: #fff;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      background: #222;
+    }
+
+    /* Fundo em imagem cobrindo toda a página */
+    .bg {
+      /* caminho para a imagem: img/carpinteiro.png */
+      background-image: url('img/carpinteiro.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      /* não usar background-attachment: fixed em mobile (problemas de performance), então aplicamos condicional */
+      min-height: 100vh;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Overlay para legibilidade do texto */
+    .overlay {
+      background: linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.55) 60%, rgba(0,0,0,0.7) 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* NAVBAR */
+    header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:20px 40px;
+      gap:20px;
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      backdrop-filter: blur(6px);
+    }
+
+    .logo{
+      font-weight:700;
+      letter-spacing:1px;
+      font-size:30px;
+      color:#ffd39b; /* tom madeira */
+      text-shadow:0 2px 10px rgba(0,0,0,0.4);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    nav ul{
+      list-style:none;
+      display:flex;
+      gap:22px;
+    }
+
+    nav a{
+      color: #fff;
+      text-decoration:none;
+      font-weight:600;
+      padding:8px 12px;
+      border-radius:8px;
+      transition: background .18s, transform .12s;
+    }
+
+    nav a:hover{
+      background: rgba(255,255,255,0.08);
+      transform: translateY(-2px);
+    }
+
+    /* HERO - ocupa boa parte da viewport */
+    .hero{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:60px 680px;
+      gap:30px;
+      flex:1 0 auto;
+    }
+
+    .hero-text{
+      max-width:880px;
+      background: linear-gradient(90deg, rgba(0,0,0,0.25), rgba(0,0,0,0.15));
+      padding:28px;
+      border-radius:14px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      backdrop-filter: blur(4px);
+    }
+
+    .hero-text h1{
+      font-size:44px;
+      line-height:1.05;
+      margin-bottom:12px;
+      color:#fff;
+      text-shadow:0 6px 30px rgba(0,0,0,0.5);
+    }
+
+    .hero-text p{
+      color: #f1e7d6;
+      margin-bottom:20px;
+      font-size:18px;
+    }
+
+    .actions{
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      padding:12px 20px;
+      border-radius:30px;
+      border:none;
+      cursor:pointer;
+      font-weight:700;
+      text-decoration:none;
+      display:inline-block;
+    }
+    .btn-primary{ background:#6b3f1b; color:#fff; box-shadow:0 6px 18px rgba(107,63,27,0.25) }
+    .btn-outline{ background:transparent; border:2px solid rgba(255,255,255,0.18); color:#fff }
+
+    /* Seção completa lado a lado */
+.sobre-completo {
+  display:flex;
+  gap:30px;
+  justify-content: space-between;
+  flex-wrap: wrap; /* importante para responsividade */
+  margin: 30px 40px;
+  max-width: 1500px;
+}
+
+/* Reaproveitando o estilo .about */
+.about {
+  flex: 1 1 45%; /* ocupa metade do container, flexível */
+  padding: 40px 50px;
+  background: rgba(0,0,0,0.35);
+  border-radius:12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.45);
+}
+
+.about h2{
+  color:#ffe8c6;
+  font-size:26px;
+  margin-bottom:10px;
+}
+
+.about p, .about ul, .about li{
+  color:#f4ead8;
+  font-size:16px;
+  line-height:1.6;
+}
+
+.about ul{
+  list-style: disc;
+  padding-left: 20px;
+}
+
+.about li{
+  margin-bottom:6px;
+}
+
+/* Responsividade */
+@media (max-width: 1000px){
+  .sobre-completo {
+    flex-direction: column;
+    gap:20px;
+  }
+  .about { flex: 1 1 100%; }
+}
+
+
+    /* GRID DE TRABALHOS */
+.trabalhos {
+  padding:50px 80px;
+  margin:30px 40px;
+  border-radius:12px;
+  background: rgba(0,0,0,0.35);
+  max-width:1800px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.45);
+}
+
+.trabalhos h2{
+  color:#ffd39b;
+  font-size:26px;
+  margin-bottom:20px;
+}
+
+/* Grid livre, sem container fixo para a imagem */
+.grid-trabalhos {
+  display:flex;
+  flex-wrap:wrap;
+  gap:30px;
+  justify-content:center;
+  align-items:center;
+}
+
+.grid-trabalhos img {
+  width:40%;
+  max-width:220px;
+  height:auto;
+  display:block;
+  transition: transform 0.3s, box-shadow 0.3s;
+  border-radius:8px;
+  cursor:pointer;
+}
+
+.grid-trabalhos img:hover {
+  transform: scale(1.1);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+}
+
+
+    .footer{
+      text-align:center;
+      padding:22px;
+      color: #f0e8dd;
+      background: linear-gradient(180deg, rgba(0,0,0,0.2), rgba(0,0,0,0.35));
+      font-size:14px;
+    }
+
+  /* RESPONSIVO */
+@media (max-width: 1000px){
+  .hero{
+    padding:40px 30px;
+    flex-direction:column;
+    align-items:flex-start;
+  }
+  .hero-text{ width:100%; max-width:900px }
+  header{ padding:14px 20px }
+  .about, .trabalhos-placeholder{ padding:26px 22px; margin:18px 20px }
+  /* Ajuste do fundo */
+  .bg {
+    background-position: top center;
+    background-size: cover;
+  }
+}
+
+@media (max-width: 640px){
+  nav ul{ gap:12px }
+  .hero-text h1{ font-size:28px }
+  .hero-text p{ font-size:15px }
+  .btn{ padding:10px 14px; font-size:14px }
+  .hero{ padding:28px 18px }
+  .about p{ font-size:15px }
+
+  /* Ajustes para mobile */
+  .bg {
+    background-attachment: scroll;
+    background-position: top center; /* garante que parte importante da imagem apareça */
+    background-size: cover;          /* mantém proporção e evita distorção */
+    min-height: 70vh;                /* hero menor em telas pequenas */
+  }
+
+  .hero {
+    padding:20px 12px;
+  }
+}
+
+  </style>
+</head>
+<body>
+  <div class="bg" role="img" aria-label="Oficina de carpintaria - fundo">
+    <div class="overlay">
+      <header>
+        <div class="logo">Carpintaria do Sr. Raimundo</div>
+        <nav aria-label="Navegação principal">
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#sobre-completo">Sobre</a></li>
+            <li><a href="#trabalhos">Trabalhos</a></li>
+          </ul>
+        </nav>
+      </header>
+
+      <main style="flex:1">
+        <section id="home" class="hero" aria-labelledby="hero-title">
+          <div class="hero-text">
+            <h1 id="hero-title">Transformando madeira em peças únicas</h1>
+            <p>Oficina artesanal com atenção ao detalhe, móveis sob medida e restaurações com acabamento profissional. Veja alguns trabalhos na seção “Trabalhos”.</p>
+            <div class="actions">
+              <a class="btn btn-primary" href="#trabalhos">Ver Trabalhos</a>
+              
+            </div>
+          </div>
+
+          <!-- Se você quiser colocar uma foto do marceneiro recortada como 'avatar' no canto, adicione aqui:
+               <img src="img/marceneiro-recortado.png" alt="Marceneiro" style="width:240px;border-radius:12px;box-shadow:..."> -->
+        </section>
+
+       <section id="sobre-completo" class="sobre-completo">
+                <!-- Sobre o Marceneiro -->
+                <div class="about" aria-labelledby="sobre-title">
+                    <h2 id="sobre-title">Sobre o Marceneiro</h2>
+                    <p>O Sr. Raimundo é um profissional com longa experiência em marcenaria, especializado em móveis sob medida, portas e peças decorativas. Trabalho artesanal com técnicas tradicionais e ferramentas modernas, sempre priorizando acabamento e durabilidade.</p>
+                </div>
+
+                <!-- Sobre a Marcenaria -->
+                <div class="about marcenaria" aria-labelledby="marcenaria-title">
+                    <h2 id="marcenaria-title">Sobre a Marcenaria</h2>
+                    <p>Localizada na Rua Antonio da Costa, nº 455, Vila Nova, Zé Doca-MA.</p>
+                    <p>Contatos:</p>
+                    <ul>
+                    <li>Telefone: (00) 1234-5678</li>
+                    <li>WhatsApp: (00) 91234-5678</li>
+                    </ul>
+                </div>
+                </section>
+
+        <!--Nessa section eu quero que vc crie um grid de imagens que ja coloquei na 
+        pasta img, wesa.png, tabua.png, guardaRoupa.png, nicho.png e porta.png, daqueles que quando a seta do mouse passa 
+        sobre a imagem a imagem aumenta de tamanho-->
+            <section id="trabalhos" class="trabalhos" aria-labelledby="trab-title">
+            <h2 id="trab-title">Trabalhos Realizados</h2>
+            <div class="grid-trabalhos">
+                <img src="img/wesa.png" alt="Trabalho Wesa">
+                <img src="img/tabua.png" alt="Trabalho Tabua">
+                <img src="img/5guardaRoupa.png" alt="Guarda-Roupa">
+                <img src="img/nicho.png" alt="Nicho">
+                <img src="img/porta.png" alt="Porta">
+            </div>
+            </section>
+      </main>
+
+      <footer class="footer">
+        © <span id="ano"></span> Carpintaria do Sr. Raimundo — Todos os direitos reservados.
+      </footer>
+    </div>
+  </div>
+
+  <script>
+    // subistitui o ano automaticamente
+    document.getElementById('ano').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
